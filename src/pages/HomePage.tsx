@@ -56,7 +56,8 @@ export default function HomePage() {
               </div>
               <h3 className="text-xl font-semibold mb-3 text-gray-900">Paiement Sécurisé</h3>
               <p className="text-gray-600 leading-relaxed">
-                Payez uniquement à la livraison. Zéro risque, satisfaction garantie.
+                Première version gratuite → 30 % après validation → puis le reste à la livraison.
+Zéro risque, satisfaction garantie.
               </p>
             </div>
 
