@@ -4,7 +4,7 @@ export default function AdvantagesSection() {
   const advantages = [
     {
       icon: CheckCircle2,
-      title: 'Première version gratuite,
+      title: 'Première version gratuite',
       description: 'Première version offerte, acompte après validation, paiement final à la livraison. satisfaction assurée',
       color: 'bg-[#00C58E]'
     },
