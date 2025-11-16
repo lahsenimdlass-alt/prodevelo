@@ -4,8 +4,9 @@ export default function AdvantagesSection() {
   const advantages = [
     {
       icon: CheckCircle2,
-      title: 'Paiement à la Livraison',
-      description: 'Payez uniquement lorsque votre site est prêt et que vous êtes satisfait',
+      title: 'Première version gratuite,
+      description: 'Première version offerte, acompte après validation, paiement final à la livraison.
+Confiance garantie',
       color: 'bg-[#00C58E]'
     },
     {
