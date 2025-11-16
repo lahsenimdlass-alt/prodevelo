@@ -56,7 +56,7 @@ export default function HomePage() {
               </div>
               <h3 className="text-xl font-semibold mb-3 text-gray-900">Paiement Sécurisé</h3>
               <p className="text-gray-600 leading-relaxed">
-                Première version gratuite → 30 % après validation → puis le reste à la livraison.
+                Première version gratuite, 30 % après validation, puis le reste à la livraison.
 Zéro risque, satisfaction garantie.
               </p>
             </div>
@@ -89,7 +89,7 @@ Zéro risque, satisfaction garantie.
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {[
-              'Paiement uniquement après livraison',
+              'Première version gratuite',
               'Modifications gratuites après livraison',
               'Support réactif et personnalisé',
               'Design moderne et professionnel',
