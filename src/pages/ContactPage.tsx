@@ -1,27 +1,56 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
+import { Mail, Phone, MapPin, Send, CheckCircle, ArrowRight } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
+interface ServiceInfo {
+  name: string;
+  price: string;
+  delay: string;
+}
+
+const SERVICES: Record<string, ServiceInfo> = {
+  'Site Professionnel': {
+    name: 'Site Professionnel',
+    price: '3 500 MAD',
+    delay: '5 à 7 jours'
+  },
+  'Site E-Commerce': {
+    name: 'Site E-Commerce',
+    price: '8 500 MAD',
+    delay: '10 à 15 jours'
+  },
+  'Application Web': {
+    name: 'Application Web',
+    price: 'À partir de 15 000 MAD',
+    delay: '15 à 30 jours'
+  }
+};
+
 export default function ContactPage() {
+  const location = useLocation();
+  const locationState = location.state as { selectedService?: string; price?: string; delay?: string } | undefined;
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    company: '',
-    service: '',
-    budget: '',
-    message: ''
+    service: locationState?.selectedService || ''
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
+  const [showAnimation, setShowAnimation] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
+
+  const selectedServiceInfo = formData.service ? SERVICES[formData.service as keyof typeof SERVICES] : null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,10 +64,10 @@ export default function ContactPage() {
           name: formData.name || null,
           email: formData.email || null,
           phone: formData.phone || null,
-          company: formData.company || null,
+          company: null,
           service: formData.service || null,
-          budget: formData.budget || null,
-          message: formData.message || null
+          budget: selectedServiceInfo?.price || null,
+          message: `Délai: ${selectedServiceInfo?.delay || 'N/A'}`
         }]);
 
       if (dbError) throw dbError;
@@ -50,7 +79,11 @@ export default function ContactPage() {
           'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          price: selectedServiceInfo?.price || 'N/A',
+          delay: selectedServiceInfo?.delay || 'N/A'
+        })
       });
 
       if (!response.ok) {
@@ -62,10 +95,7 @@ export default function ContactPage() {
         name: '',
         email: '',
         phone: '',
-        company: '',
-        service: '',
-        budget: '',
-        message: ''
+        service: ''
       });
 
       setTimeout(() => setIsSuccess(false), 5000);
@@ -77,15 +107,40 @@ export default function ContactPage() {
     }
   };
 
+  const handleWhatsAppSubmit = () => {
+    if (!formData.name || !formData.email || !formData.phone || !formData.service) {
+      setError('Veuillez remplir tous les champs avant d\'envoyer via WhatsApp');
+      return;
+    }
+
+    const message = `Bonjour Prodevelo,
+
+Voici mes informations :
+- Nom : ${formData.name}
+- Email : ${formData.email}
+- Téléphone : ${formData.phone}
+- Service : ${formData.service}
+- Prix : ${selectedServiceInfo?.price}
+- Délai : ${selectedServiceInfo?.delay}
+
+J'aimerais discuter de mon projet.`;
+
+    const whatsappNumber = '212600000000';
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <div className="bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-            Contactez-Nous
+            Commencer Votre Projet
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Parlez-nous de votre projet et recevez un devis gratuit sous 24h
+            Les prix et délais s'affichent automatiquement selon le service choisi.
           </p>
         </div>
 
@@ -106,25 +161,25 @@ export default function ContactPage() {
               )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    Nom complet *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A73E8] focus:border-transparent outline-none transition-all"
+                    placeholder="Votre nom"
+                  />
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                      Nom complet
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A73E8] focus:border-transparent outline-none transition-all"
-                      placeholder="Votre nom"
-                    />
-                  </div>
-
-                  <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email
+                      Email *
                     </label>
                     <input
                       type="email"
@@ -136,12 +191,10 @@ export default function ContactPage() {
                       placeholder="votre@email.com"
                     />
                   </div>
-                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                      Téléphone
+                      Téléphone *
                     </label>
                     <input
                       type="tel"
@@ -153,95 +206,78 @@ export default function ContactPage() {
                       placeholder="+212 6XX XXX XXX"
                     />
                   </div>
-
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                      Entreprise
-                    </label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A73E8] focus:border-transparent outline-none transition-all"
-                      placeholder="Nom de votre entreprise"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-                      Service souhaité
-                    </label>
-                    <select
-                      id="service"
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A73E8] focus:border-transparent outline-none transition-all"
-                    >
-                      <option value="">Sélectionner un service</option>
-                      <option value="Site Vitrine">Site Vitrine</option>
-                      <option value="Site Business">Site Business</option>
-                      <option value="Site E-commerce">Site E-commerce</option>
-                      <option value="Projet sur mesure">Projet sur mesure</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-2">
-                      Budget estimé
-                    </label>
-                    <select
-                      id="budget"
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A73E8] focus:border-transparent outline-none transition-all"
-                    >
-                      <option value="">Sélectionner un budget</option>
-                      <option value="Moins de 3000 MAD">Moins de 3000 MAD</option>
-                      <option value="3000 - 5000 MAD">3000 - 5000 MAD</option>
-                      <option value="5000 - 10000 MAD">5000 - 10000 MAD</option>
-                      <option value="Plus de 10000 MAD">Plus de 10000 MAD</option>
-                    </select>
-                  </div>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Votre message
+                  <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
+                    Type de service *
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A73E8] focus:border-transparent outline-none transition-all resize-none"
-                    placeholder="Décrivez votre projet..."
-                  ></textarea>
+                  <select
+                    id="service"
+                    name="service"
+                    value={formData.service}
+                    onChange={(e) => {
+                      handleChange(e);
+                      setShowAnimation(false);
+                      setTimeout(() => setShowAnimation(true), 50);
+                    }}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A73E8] focus:border-transparent outline-none transition-all"
+                  >
+                    <option value="">-- Sélectionner un service --</option>
+                    <option value="Site Professionnel">Site Professionnel — 3 500 MAD / 5–7 jours</option>
+                    <option value="Site E-Commerce">Site E-Commerce — 8 500 MAD / 10–15 jours</option>
+                    <option value="Application Web">Application Web — À partir de 15 000 MAD / 15–30 jours</option>
+                  </select>
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-[#1A73E8] text-white py-4 rounded-lg font-semibold text-lg hover:bg-[#1557b0] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
-                >
-                  {isSubmitting ? (
-                    <span>Envoi en cours...</span>
-                  ) : (
-                    <>
-                      <span>Envoyer le message</span>
-                      <Send className="w-5 h-5" />
-                    </>
-                  )}
-                </button>
+                {selectedServiceInfo && (
+                  <div className={`bg-gradient-to-br from-[#1A73E8] from-opacity-5 to-[#0d47a1] to-opacity-5 border-2 border-[#1A73E8] border-opacity-30 rounded-xl p-6 ${showAnimation ? 'animate-fade-in' : ''}`}>
+                    <h3 className="font-bold text-gray-900 mb-4">{selectedServiceInfo.name}</h3>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-sm text-gray-600 mb-1">Prix TTC</p>
+                        <p className="text-2xl font-bold text-[#1A73E8]">{selectedServiceInfo.price}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-600 mb-1">Délai de réalisation</p>
+                        <p className="text-2xl font-bold text-[#00C58E]">{selectedServiceInfo.delay}</p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-gray-600 mt-4 italic">
+                      Processus : Démo → Validation → Paiement 30% d'acompte → Finalisation
+                    </p>
+                  </div>
+                )}
 
-                <p className="text-sm text-gray-500 text-center">
-                  Tous les champs sont facultatifs. Remplissez uniquement ce que vous souhaitez.
+                <div className="pt-4 space-y-3">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting || !formData.name || !formData.email || !formData.phone || !formData.service}
+                    className="w-full bg-[#1A73E8] text-white py-4 rounded-lg font-semibold text-lg hover:bg-[#1557b0] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  >
+                    {isSubmitting ? (
+                      <span>Envoi en cours...</span>
+                    ) : (
+                      <>
+                        <span>Envoyer par Email</span>
+                        <Send className="w-5 h-5" />
+                      </>
+                    )}
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleWhatsAppSubmit}
+                    disabled={!formData.name || !formData.email || !formData.phone || !formData.service}
+                    className="w-full bg-[#25D366] text-white py-4 rounded-lg font-semibold text-lg hover:bg-[#20ba5a] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  >
+                    <span>Envoyer via WhatsApp</span>
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                </div>
+
+                <p className="text-sm text-gray-500 text-center pt-4 border-t">
+                  Tous les champs marqués * sont requis
                 </p>
               </form>
             </div>
@@ -267,12 +303,12 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#00C58E] bg-opacity-10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-[#00C58E]" />
+                  <div className="w-12 h-12 bg-[#25D366] bg-opacity-10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-[#25D366]" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-gray-900 mb-1">Téléphone</h3>
-                    <a href="tel:+212600000000" className="text-gray-600 hover:text-[#00C58E]">
+                    <h3 className="font-medium text-gray-900 mb-1">WhatsApp</h3>
+                    <a href="https://wa.me/212600000000" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#25D366]">
                       +212 6XX XXX XXX
                     </a>
                   </div>
@@ -291,14 +327,70 @@ export default function ContactPage() {
             </div>
 
             <div className="bg-gradient-to-br from-[#1A73E8] to-[#0d47a1] rounded-2xl p-6 text-white">
-              <h3 className="text-lg font-semibold mb-3">Réponse Rapide</h3>
-              <p className="text-blue-100 leading-relaxed">
-                Nous nous engageons à vous répondre sous 24h pour discuter de votre projet et vous fournir un devis détaillé.
+              <h3 className="text-lg font-semibold mb-3">Réponse Rapide Garantie</h3>
+              <p className="text-blue-100 leading-relaxed mb-4">
+                Nous nous engageons à vous répondre dans les <span className="font-bold">24 heures</span> pour discuter de votre projet.
               </p>
+              <ul className="space-y-2 text-sm">
+                <li className="flex items-center space-x-2">
+                  <CheckCircle className="w-4 h-4 text-[#FFC107]" />
+                  <span>Consultation gratuite</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle className="w-4 h-4 text-[#FFC107]" />
+                  <span>Devis personnalisé</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle className="w-4 h-4 text-[#FFC107]" />
+                  <span>Démonstration gratuite</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-blue-50 border-2 border-[#1A73E8] border-opacity-20 rounded-2xl p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Comment ça marche</h3>
+              <ol className="space-y-3 text-sm">
+                <li className="flex items-start space-x-3">
+                  <span className="w-6 h-6 bg-[#1A73E8] text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">1</span>
+                  <span className="text-gray-700">Vous complétez le formulaire</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="w-6 h-6 bg-[#00C58E] text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">2</span>
+                  <span className="text-gray-700">Nous vous contactons sous 24h</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="w-6 h-6 bg-[#FFC107] text-gray-900 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">3</span>
+                  <span className="text-gray-700">Nous créons une démo</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="w-6 h-6 bg-[#1A73E8] text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">4</span>
+                  <span className="text-gray-700">Vous validez et payez 30%</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="w-6 h-6 bg-[#00C58E] text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">5</span>
+                  <span className="text-gray-700">On finalise et vous livrez</span>
+                </li>
+              </ol>
             </div>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
+      `}</style>
     </div>
   );
 }
