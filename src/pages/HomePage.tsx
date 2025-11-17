@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, Zap, Shield, Gift } from 'lucide-react';
+import { ArrowRight, Check, Zap, Shield, Gift, Globe, CreditCard, Sparkles } from 'lucide-react';
 import AdvantagesSection from '../components/AdvantagesSection';
 
 export default function HomePage() {
@@ -56,8 +56,7 @@ export default function HomePage() {
               </div>
               <h3 className="text-xl font-semibold mb-3 text-gray-900">Paiement Sécurisé</h3>
               <p className="text-gray-600 leading-relaxed">
-                Première version gratuite, 30 % après validation, puis le reste à la livraison.
-Zéro risque, satisfaction garantie.
+                Première version gratuite, 30 % après validation, puis le reste à la livraison. Zéro risque, satisfaction garantie.
               </p>
             </div>
 
@@ -75,6 +74,101 @@ Zéro risque, satisfaction garantie.
       </section>
 
       <AdvantagesSection />
+
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Notre Processus en 3 Étapes
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Simple, transparent et sans risque. Voici comment nous créons votre site web.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="relative">
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-[#1A73E8] to-[#0d47a1] rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+                1
+              </div>
+              <div className="bg-gray-50 rounded-xl p-8 pt-12 text-center hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 bg-[#1A73E8] bg-opacity-10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Globe className="w-8 h-8 text-[#1A73E8]" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  Création Démo
+                </h3>
+                <p className="text-gray-600 leading-relaxed mb-4">
+                  Nous créons une première version de votre site sans domaine. Vous pouvez voir le design, les pages et la structure en action.
+                </p>
+                <div className="text-sm text-[#1A73E8] font-semibold">
+                  Délai : 5-7 jours
+                </div>
+              </div>
+              {/* Ligne de connexion */}
+              <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-gray-300 to-transparent"></div>
+            </div>
+
+            <div className="relative">
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-[#00C58E] to-[#009970] rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+                2
+              </div>
+              <div className="bg-gray-50 rounded-xl p-8 pt-12 text-center hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 bg-[#00C58E] bg-opacity-10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Check className="w-8 h-8 text-[#00C58E]" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  Validation
+                </h3>
+                <p className="text-gray-600 leading-relaxed mb-4">
+                  Vous validez la démo ou nous effectuons les ajustements nécessaires. Aucun engagement jusqu'à ce que vous soyez 100% satisfait.
+                </p>
+                <div className="text-sm text-[#00C58E] font-semibold">
+                  Ajustements gratuits
+                </div>
+              </div>
+              {/* Ligne de connexion */}
+              <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-gray-300 to-transparent"></div>
+            </div>
+
+            <div className="relative">
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-[#FFC107] to-[#FF9800] rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+                3
+              </div>
+              <div className="bg-gradient-to-br from-[#FFC107] to-[#FF9800] bg-opacity-10 rounded-xl p-8 pt-12 text-center hover:shadow-lg transition-shadow border-2 border-[#FFC107] border-opacity-30">
+                <div className="w-16 h-16 bg-[#FFC107] bg-opacity-20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <CreditCard className="w-8 h-8 text-[#FFC107]" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  Paiement & Finalisation
+                </h3>
+                <div className="text-gray-600 leading-relaxed mb-4">
+                  <p className="mb-2">Versez 30% d'acompte pour finaliser :</p>
+                  <ul className="text-sm space-y-1">
+                    <li>✓ Domaine activé</li>
+                    <li>✓ Emails professionnels</li>
+                    <li>✓ Hébergement complété</li>
+                  </ul>
+                </div>
+                <div className="text-sm font-semibold text-[#FFC107]">
+                  Reste payé à la livraison
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 bg-blue-50 border-2 border-[#1A73E8] border-opacity-20 rounded-xl p-8 text-center">
+            <div className="flex items-center justify-center space-x-2 mb-4">
+              <Sparkles className="w-6 h-6 text-[#1A73E8]" />
+              <h3 className="text-xl font-bold text-gray-900">Avantage Prodevelo</h3>
+              <Sparkles className="w-6 h-6 text-[#1A73E8]" />
+            </div>
+            <p className="text-gray-700 text-lg">
+              Vous ne payez le reste que lorsque le site est <span className="font-bold text-[#1A73E8]">livré et prêt</span>. Zéro risque, 100% satisfaction garantie.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
