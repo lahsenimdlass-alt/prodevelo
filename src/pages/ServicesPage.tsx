@@ -80,7 +80,6 @@ export default function ServicesPage() {
       color: 'border-[#FFC107]',
       accentColor: '#FFC107',
       bgAccent: 'bg-[#FFC107]',
-      badge: 'Projet personnalisé'
     }
   ];
 
