@@ -296,7 +296,7 @@ J'aimerais discuter de mon projet.`;
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1">Email</h3>
-                    <a href="mailto:contact@prodevelo.com" className="text-gray-600 hover:text-[#1A73E8]">
+                    <a href="mailto:support@prodevelo.com" className="text-gray-600 hover:text-[#1A73E8]">
                       support@prodevelo.com
                     </a>
                   </div>
