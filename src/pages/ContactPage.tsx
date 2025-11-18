@@ -308,7 +308,7 @@ J'aimerais discuter de mon projet.`;
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1">WhatsApp</h3>
-                    <a href="https://wa.me/212600000000" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#25D366]">
+                    <a href="https://wa.me/212619533551" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#25D366]">
                       +212 619 533 551
                     </a>
                   </div>
