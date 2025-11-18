@@ -102,7 +102,7 @@ export default function HomePage() {
                   Nous créons une première version de votre site sans domaine. Vous pouvez voir le design, les pages et la structure en action.
                 </p>
                 <div className="text-sm text-[#1A73E8] font-semibold">
-                  Délai : 5-7 jours
+                  Délai : 3-5 jours
                 </div>
               </div>
               {/* Ligne de connexion */}
@@ -118,10 +118,10 @@ export default function HomePage() {
                   <Check className="w-8 h-8 text-[#00C58E]" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Validation
+                  Validation & Acompte
                 </h3>
                 <p className="text-gray-600 leading-relaxed mb-4">
-                  Vous validez la démo ou nous effectuons les ajustements nécessaires. Aucun engagement jusqu'à ce que vous soyez 100% satisfait.
+                  Le client valide la démo et paie un acompte de 30 % pour lancer la finalisation du site.
                 </p>
                 <div className="text-sm text-[#00C58E] font-semibold">
                   Ajustements gratuits
@@ -135,15 +135,15 @@ export default function HomePage() {
               <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-[#FFC107] to-[#FF9800] rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg">
                 3
               </div>
-              <div className="bg-gradient-to-br from-[#FFC107] to-[#FF9800] bg-opacity-10 rounded-xl p-8 pt-12 text-center hover:shadow-lg transition-shadow border-2 border-[#FFC107] border-opacity-30">
+              <div className="bg-gray-50 rounded-xl p-8 pt-12 text-center hover:shadow-lg transition-shadow">
                 <div className="w-16 h-16 bg-[#FFC107] bg-opacity-20 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <CreditCard className="w-8 h-8 text-[#FFC107]" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Paiement & Finalisation
+                  Finalisation & Livraison
                 </h3>
                 <div className="text-gray-600 leading-relaxed mb-4">
-                  <p className="mb-2">Versez 30% d'acompte pour finaliser :</p>
+                  <p className="mb-2">Finaliser le site complet :</p>
                   <ul className="text-sm space-y-1">
                     <li>✓ Domaine activé</li>
                     <li>✓ Emails professionnels</li>
@@ -151,7 +151,7 @@ export default function HomePage() {
                   </ul>
                 </div>
                 <div className="text-sm font-semibold text-[#FFC107]">
-                  Reste payé à la livraison
+                  Paiement final à la livraison.
                 </div>
               </div>
             </div>
