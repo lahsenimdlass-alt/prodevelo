@@ -125,7 +125,7 @@ Voici mes informations :
 
 J'aimerais discuter de mon projet.`;
 
-    const whatsappNumber = '212600000000';
+    const whatsappNumber = '212619533551';
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
@@ -231,7 +231,7 @@ J'aimerais discuter de mon projet.`;
                 </div>
 
                 {selectedServiceInfo && (
-                  <div className={`bg-gradient-to-br from-[#1A73E8] from-opacity-5 to-[#0d47a1] to-opacity-5 border-2 border-[#1A73E8] border-opacity-30 rounded-xl p-6 ${showAnimation ? 'animate-fade-in' : ''}`}>
+                  <div className="bg-gray-50 rounded-xl p-8 pt-12 text-center hover:shadow-lg transition-shadow">
                     <h3 className="font-bold text-gray-900 mb-4">{selectedServiceInfo.name}</h3>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
