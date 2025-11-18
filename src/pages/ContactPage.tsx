@@ -297,7 +297,7 @@ J'aimerais discuter de mon projet.`;
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1">Email</h3>
                     <a href="mailto:contact@prodevelo.com" className="text-gray-600 hover:text-[#1A73E8]">
-                      contact@prodevelo.com
+                      support@prodevelo.com
                     </a>
                   </div>
                 </div>
@@ -309,7 +309,7 @@ J'aimerais discuter de mon projet.`;
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1">WhatsApp</h3>
                     <a href="https://wa.me/212600000000" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#25D366]">
-                      +212 6XX XXX XXX
+                      +212 619 533 551
                     </a>
                   </div>
                 </div>
