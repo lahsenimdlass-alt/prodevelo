@@ -44,11 +44,11 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center space-x-3 text-gray-400">
                 <Mail className="w-5 h-5 text-[#1A73E8]" />
-                <span>contact@prodevelo.com</span>
+                <span>support@prodevelo.com</span>
               </li>
               <li className="flex items-center space-x-3 text-gray-400">
                 <Phone className="w-5 h-5 text-[#1A73E8]" />
-                <span>+212 6XX XXX XXX</span>
+                <span>+212 619 533 551</span>
               </li>
               <li className="flex items-center space-x-3 text-gray-400">
                 <MapPin className="w-5 h-5 text-[#1A73E8]" />
