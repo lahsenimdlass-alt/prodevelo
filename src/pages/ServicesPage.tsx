@@ -61,7 +61,7 @@ export default function ServicesPage() {
       subtitle: 'Projet personnalisé',
       price: 'À partir de 15 000 MAD',
       delay: '15 à 30 jours',
-      description: 'Solutions sur mesure pour des besoins complexes',
+      description: 'Applications web sur-mesure (dashboards, portails, marketplaces multi-vendeurs et solutions SaaS complètes)',
       features: [
         'UI/UX personnalisé et sur mesure',
         'Authentification sécurisée',
@@ -227,21 +227,21 @@ export default function ServicesPage() {
                 <div className="w-8 h-8 bg-[#1A73E8] rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">1</div>
                 <div>
                   <p className="font-semibold text-gray-900">Création démo</p>
-                  <p className="text-sm text-gray-600">Version sans domaine en 5-7 jours</p>
+                  <p className="text-sm text-gray-600">Première version du site (sans domaine) livrée sous 3–5 jours.</p>
                 </div>
               </li>
               <li className="flex space-x-4">
                 <div className="w-8 h-8 bg-[#00C58E] rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">2</div>
                 <div>
                   <p className="font-semibold text-gray-900">Validation</p>
-                  <p className="text-sm text-gray-600">Vous testez et nous ajustons gratuitement</p>
+                  <p className="text-sm text-gray-600">Validation + acompte de 30 %. Ajustements inclus.</p>
                 </div>
               </li>
               <li className="flex space-x-4">
                 <div className="w-8 h-8 bg-[#FFC107] rounded-full flex items-center justify-center text-gray-900 font-bold flex-shrink-0">3</div>
                 <div>
-                  <p className="font-semibold text-gray-900">Paiement acompte 30%</p>
-                  <p className="text-sm text-gray-600">On finalise, vous payez le reste à la livraison</p>
+                  <p className="font-semibold text-gray-900">Livraison finale</p>
+                  <p className="text-sm text-gray-600">Activation du domaine, emails pro et hébergement. Paiement final à livraison.</p>
                 </div>
               </li>
             </ol>
