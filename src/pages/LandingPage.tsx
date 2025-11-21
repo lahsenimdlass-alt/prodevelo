@@ -123,7 +123,7 @@ export default function LandingPage() {
               Pro<span className="text-[#1A73E8]">develo</span>
             </span>
           </div>
-          <div className="text-sm text-gray-600 font-medium">
+          <div className="text-sm text-gray-500 font-medium">
             ⏱ Démo gratuite en 3-5 jours
           </div>
         </div>
@@ -220,7 +220,7 @@ export default function LandingPage() {
                 { step: '2', title: 'Contactez', desc: 'sous 24h' },
                 { step: '3', title: 'Démo', desc: 'gratuite créée' },
                 { step: '4', title: 'Validez', desc: 'et payez 30%' },
-                { step: '5', title: 'Finalisation & Livraison', desc: 'Mise en ligne complète et paiement final à la livraison' }
+                { step: '5', title: 'Livraison', desc: 'Finalisation & paiement final' }
               ].map((item, idx) => (
                 <div key={idx} className="flex flex-col items-center">
                   <div className="w-12 h-12 bg-[#FFC107] text-[#1A73E8] rounded-full flex items-center justify-center font-bold text-lg mb-2">
