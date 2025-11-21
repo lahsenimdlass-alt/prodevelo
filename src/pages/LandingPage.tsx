@@ -132,7 +132,7 @@ export default function LandingPage() {
             isActive('/') ? 'text-[#1A73E8]' : 'text-gray-700 hover:text-[#1A73E8]'
           }`}
         >
-          {/* ton contenu ici */}
+          Accueil
         </Link>
 
         <div className="text-sm text-gray-600 font-medium">
@@ -142,6 +142,7 @@ export default function LandingPage() {
     </div>
   </div>
 </div>
+
 
       <div className="pt-20 pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
