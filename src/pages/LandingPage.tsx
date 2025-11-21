@@ -115,36 +115,20 @@ export default function LandingPage() {
   };
 
   return (
-    return (
-    <>
-      <div className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link to="/" className="flex items-center space-x-2">
-              <Code2 className="w-8 h-8 text-[#1A73E8]" />
-              <span className="text-2xl font-bold text-gray-900">
-                Pro<span className="text-[#1A73E8]">develo</span>
-              </span>
-            </Link>
-
-            <div className="hidden md:flex items-center space-x-8">
-              <Link
-                to="/"
-                className={`text-base font-medium transition-colors ${
-                  isActive('/') ? 'text-[#1A73E8]' : 'text-gray-700 hover:text-[#1A73E8]'
-                }`}
-              >
-                Accueil
-              </Link>
-
-              <div className="text-sm text-gray-600 font-medium">
-                ⏱ Démo gratuite en 3-5 jours
-              </div>
-            </div>
+    <div className="min-h-screen bg-gradient-to-br from-[#0d47a1] via-[#1A73E8] to-[#00C58E] bg-opacity-95">
+      <div className="fixed top-0 left-0 right-0 z-40 bg-white shadow-sm">
+        <div className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="flex items-center space-x-2">
+            <span className="text-2xl font-bold text-gray-900">
+              Pro<span className="text-[#1A73E8]">develo</span>
+            </span>
+          </div>
+          <div className="text-sm text-gray-600 font-medium">
+            ⏱ Démo gratuite en 3-5 jours
           </div>
         </div>
       </div>
-      
+
       <div className="pt-20 pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <section className="text-center py-8 sm:py-12">
