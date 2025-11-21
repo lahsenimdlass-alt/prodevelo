@@ -205,8 +205,8 @@ export default function LandingPage() {
               <div className="flex items-start space-x-4">
                 <CheckCircle className="w-8 h-8 text-[#FFC107] flex-shrink-0 mt-1" />
                 <div>
-                  <h3 className="font-bold text-white mb-1">Expertise Pro</h3>
-                  <p className="text-white text-opacity-80 text-sm">Équipe expérimentée</p>
+                  <h3 className="font-bold text-white mb-1">+3 ans d’expérience</h3>
+                  <p className="text-white text-opacity-80 text-sm">Développement de projets web</p>
                 </div>
               </div>
             </div>
@@ -220,7 +220,7 @@ export default function LandingPage() {
                 { step: '2', title: 'Contactez', desc: 'sous 24h' },
                 { step: '3', title: 'Démo', desc: 'gratuite créée' },
                 { step: '4', title: 'Validez', desc: 'et payez 30%' },
-                { step: '5', title: 'Recevez', desc: 'votre site' }
+                { step: '5', title: 'Finalisation & Livraison', desc: 'Mise en ligne complète et paiement final à la livraison' }
               ].map((item, idx) => (
                 <div key={idx} className="flex flex-col items-center">
                   <div className="w-12 h-12 bg-[#FFC107] text-[#1A73E8] rounded-full flex items-center justify-center font-bold text-lg mb-2">
