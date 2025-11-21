@@ -123,8 +123,8 @@ export default function LandingPage() {
               Pro<span className="text-[#1A73E8]">develo</span>
             </span>
           </div>
-          <div className="text-sm text-gray-500 font-medium">
-            ⏱ Démo gratuite en 3-5 jours
+          <div className="text-sm text-gray-600 font-medium">
+            Démo gratuite en 3-5 jours
           </div>
         </div>
       </div>
